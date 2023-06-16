@@ -1,0 +1,129 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600&display=swap');
+
+
+#login-page {
+  .login-wrapper {
+    .full-page {
+      margin: 0px;
+      height: 100vh;
+
+      .login-fields {
+        // padding-left: 148px;
+        // padding-top: 98px;
+        // padding-right: 117px;
+        padding: 0;
+        padding-left: 140px;
+        padding-right:117px;
+        .logo{
+         margin-top: 78px;
+       
+        }
+        .login_txt {
+          margin-top: 50.15px;
+          span {
+            font-family: "Figtree", sans-serif;
+            font-weight: 600;
+            font-size: 36px;
+          }
+        }
+        .formlogin {
+          margin-top: 54px;
+          .login {
+            .formgroup {
+              margin-top: 26px;
+              label {
+                display: block;
+              }
+              .labelName{
+                font-family: 'Figtree',sans-serif;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 17px;
+                color: #333333;
+              }
+              input {
+                margin-top: 6px;
+                width: 398px;
+                height: 32px;
+                background: #FFFFFF;
+                border: 1px solid #B8C3C9;
+                border-radius: 3px;
+                padding: 9px 12px;
+                font-size: 12px;
+                
+              }
+              .inputBox{
+                .p-inputtext{
+                    ::placeholder{
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 14px;
+                        color: #B3B3B3;
+                      }
+                }
+            }
+            }
+          }
+        }
+       
+  
+        .loginBtn {
+          margin-top: 42px;
+        }
+        .bot {
+          margin-top: 18px;
+          display: flex;
+          justify-content: center;
+          .signup {
+            font-family: "Figtree", sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            a{
+             color:  #0073EA
+            }
+          }
+        }
+        .Tandc {
+          margin-top: 50px;
+          display: flex;
+          justify-content: center;
+          .privacy-policy {
+            text-align: center;
+            font-weight: 400;
+            font-size: 12px;
+            font-family: "Figtree", sans-serif;
+            width: 311px;
+            a{
+              color: #0073EA;
+            }
+          }
+        }
+        .copyright{
+          margin-top: 19px;
+          display: flex;
+          justify-content: center;
+          .copyrights{
+              font-family: "Figtree", sans-serif;
+              font-weight: 400;
+              font-size: 12px;
+              text-align: center;
+              color: #C0C0C0;;
+          }
+        }
+  
+  
+  
+      }
+
+      .loginpage-image{
+        background-color: #FFBA08;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+
+      }
+    }
+  }
+}

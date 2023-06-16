@@ -1,0 +1,56 @@
+<div id="login-page">
+  <div class="login-wrapper">
+    <div class="grid full-page">
+      <div class="col-6 login-fields">
+        <div class="logo">
+          <img src="../../assets/Vector.svg" alt="" />
+        </div>
+
+        <div class="login_txt">
+          <span>Verification Code </span>
+        </div>
+
+        <div class="formlogin">
+        <form class="login" #myform="ngForm">
+          <div class="formgroup">
+            <label class="labelName" for="">Enter Code</label>
+            <input class="inputBox"
+              type="text"
+              name="otp"
+              pInputText
+              ngModel
+              placeholder="Enter Code"
+            />
+          </div>
+
+
+           <div class="loginBtn">
+            <p-button (click)="verification(myform.value)">Verify</p-button>
+          </div>
+        </form>
+
+        <div class="bot">
+          <div class="signup"
+            >Don't have an account? <a href="/signup">Sign up</a></div>
+        </div>
+        </div>
+
+       
+
+        <div class="Tandc">
+          <span class="privacy-policy">
+            By creating an account, you agree to our
+            <a href=""> Terms of Service</a> and <a href=""> Privacy Policy.</a>
+          </span>
+        </div>
+        <div class="copyright">
+          <span class="copyrights">© 2022 NOQU. All rights reserved.</span>
+        </div> 
+      </div>
+
+      <div class="col-6 loginpage-image">
+        <img src="../../assets/Group 6 (1).png" alt="logo" />
+      </div>
+    </div>
+  </div>
+</div>

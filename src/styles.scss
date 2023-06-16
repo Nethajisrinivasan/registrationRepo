@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+
+body{
+    margin: 0px;
+}
+
+.loginBtn{
+    .p-ripple{
+    
+        width: 398px;
+        height: 46px;
+        background: #0073EA;
+        border-radius: 3px;
+        border: none;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        text-align: center;
+        color: #FFFFFF;
+        
+        }
+}
