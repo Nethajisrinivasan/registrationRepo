@@ -45,4 +45,11 @@ otp:number=0;
     this.url="http://localhost:3000/signup/resetpassword";
     return this.http.post(this.url,body);
   }
+
+  //update password
+  updatepassword(body:any){
+    console.log("update password service",body);
+    this.url="http://localhost:3000/signup/updatepassword";
+    return this.http.post(this.url,body);
+  }
 }

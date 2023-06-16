@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SignupService } from '../signup.service';
 import { Router } from '@angular/router';
 
@@ -8,24 +8,32 @@ import { Router } from '@angular/router';
   templateUrl: './create-new-pwd.component.html',
   styleUrls: ['./create-new-pwd.component.scss']
 })
-export class CreateNewPwdComponent {
+export class CreateNewPwdComponent implements OnInit{
   password:string=''
   confirmpassword:string=''
   email:string=''
   constructor(private signup:SignupService, private rout:Router) { }
- 
-   userData:any = localStorage.getItem('verificationData');
-  if (verificationData: any) {
-    const user = JSON.parse(verificationData);
+  ngOnInit(): void {
+    
+   const userData = localStorage.getItem('user');
+   if (userData) {
+     const user = JSON.parse(userData);
+     this.email = user.email;
+     console.log(this.email);
+   }
   }
+ 
+
+
+  
   changePassword(value:any){
     const payload={
-      email:this.userData.email,
+      email:this.email,
       password:value.password,
       confirmpassword:value.confirmpassword,
-      otp:this.userData.otp
     }
-    this.signup.changePassword(payload).subscribe((result:any)=>{
+    console.log(payload);
+    this.signup.updatepassword(payload).subscribe((result:any)=>{
       console.log(result);
   
       if(result.message=="Password changed successfully"){
