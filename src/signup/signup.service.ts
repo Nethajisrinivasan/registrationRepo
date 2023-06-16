@@ -48,11 +48,13 @@ updateVerificationCode(id: number, createUserDto: any) {
     return `This action returns a #${id} signup`;
   }
 
-  update(id: number, updateSignupDto: any) {
+  update(id: number, data: any) {
     // return `This action updates a #${id} signup`;
     //update isVerified column to true
-    console.log("i am in update");
-    return this.signupRepo.update(id,updateSignupDto);
+    console.log("i am in update",data);
+    return this.signupRepo.update(id,data);
+   
+    
 
   }
 

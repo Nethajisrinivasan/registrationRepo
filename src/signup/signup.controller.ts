@@ -30,16 +30,16 @@ export class SignupController {
   async create(
     @Req() req: Request,
     @Res() res: Response,
-    @Body() createSignupDto: any,
+    @Body() user: any,
   ) {
     try {
-      let name = createSignupDto.name;
-      let email = createSignupDto.email;
-      let password = createSignupDto.password;
+      let name = user.name;
+      let email = user.email;
+      let password = user.password;
 
-      console.log(createSignupDto);
+      console.log(user);
       const ckeckemail = await this.signupService.checkEmail(
-        createSignupDto.email,
+        user.email,
       );
 
       if (ckeckemail) {
@@ -70,12 +70,12 @@ export class SignupController {
         }
       } else {
         const saltRounds = 10;
-        createSignupDto.password = await bcrypt.hash(password, saltRounds);
-        console.log(createSignupDto.password);
+        user.password = await bcrypt.hash(password, saltRounds);
+        console.log(user.password);
 
         const verifyCode = this.mail.generateVerificationCode();
         console.log(verifyCode);
-        await this.signupService.storeUser(createSignupDto);
+        await this.signupService.storeUser(user);
         // await this.signupService.updateVerificationCode(ckeckemail.id, { verification_code: verifyCode });
         await this.mail.sendMail(
           email,
@@ -294,6 +294,8 @@ export class SignupController {
     console.log('INSIDE RESET PASSWORD');
     try {
       const { email, otp } = body;
+      console.log(otp);
+      
       const user = await this.signupService.checkEmail(email);
       const currentime = Date.now();
       const limitedtime = 120000;
@@ -304,7 +306,7 @@ export class SignupController {
         if (user.isVerified == true) {
           if (currentime - +user.attemptime < limitedtime) {
             if (user.verification_code == otp) {
-              console.log('user.verificatio_code', user.verification_code)
+              console.log('user.verification_code', user.verification_code)
               console.log('verification_code', otp)
               // const saltRounds = 10;
               // const hash = await bcrypt.hash(password, saltRounds);
@@ -342,4 +344,43 @@ export class SignupController {
       });
     }
   }
+  
+  @Post('updatepassword')
+  async changepassword(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Body() body: any,
+  ) {
+    console.log('INSIDE CHANGE PASSWORD');
+    try {
+      const { email, password } = body;
+      const user = await this.signupService.checkEmail(email);
+      if (user) {
+        if (user.isVerified == true) {
+          const saltRounds = 10;
+          const hash = await bcrypt.hash(password, saltRounds);
+          await this.signupService.update(user.id, {
+            password: hash,
+            verification_code: null,
+          });
+          return res.status(200).send({
+            message: 'Password changed successfully',
+          });
+        } else {
+          return res.status(400).send({
+            message: 'Email is not verified',
+          });
+        }
+      } else {
+        return res.status(400).send({
+          message: 'Invalid email',
+        });
+      }
+    } catch (e) {
+      return res.status(500).send({
+        message: 'Internal server error',
+      });
+    }
+  }
+
 }
