@@ -30,6 +30,7 @@ verification(value: any) {
 
   this.signup.verification(verificationData).subscribe((result:any)=>{
     console.log(result);
+    alert(result);
     this.router.navigate(['login']);
   }
   )

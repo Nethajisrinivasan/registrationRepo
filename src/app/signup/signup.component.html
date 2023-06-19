@@ -11,16 +11,24 @@
           <span>Create an Account </span>
         </div>
 
-          <div class="formlogin">
-        <form class="login" #myform="ngForm">
+      <div class="formlogin">
+        <form class="login" [formGroup]="myform">
           <div class="formgroup">
             <label class="labelName" for="">Name</label>
-            <input class="inputBox" name="name"
+            <input class="inputBox" 
+              formControlName="name"
               type="text"
               pInputText
               [(ngModel)]="name"
               placeholder="Name"
             />
+            <div *ngIf="myform.controls['name'].invalid && myform.controls['name'].touched || myform.controls['name'].dirty">
+              <div *ngIf="myform.controls['name'].errors?.['required']" class="errMsg">Name is required.</div>
+              <div *ngIf="myform.controls['name'].errors?.['minlength']" class="errMsg">Use proper Name.</div>
+
+              <!-- <div *ngIf="myform.controls['name'].errors?.['required']" class="errMsg">Name is required.</div>
+              <div *ngIf="myform.controls['name'].hasError.['minLength']" class="errMsg">Use proper Name.</div>
+              <div *ngIf="myform.controls['name'].errors?.['email']" class="errMsg">Invalid email format.</div> -->
           </div>
 
          <div class="formgroup">
@@ -29,17 +37,22 @@
             class="inputBox"
               type="text"
               pInputText
-              name="email"
+              formControlName="email"
               [(ngModel)]="email"
               placeholder="Email"
             />
+            <div *ngIf="myform.controls['email'].invalid && myform.controls['email'].touched || myform.controls['email'].dirty">
+              
+              <div *ngIf="myform.controls['email'].errors?.['required']" class="errMsg">Email is required.</div>
+              <div *ngIf="myform.controls['email'].errors?.['email']" class="errMsg">Invalid email format.</div>
           </div>
 
           <div class="formgroup">
             <label class="labelName" for="">Password</label>
             <input
             class="inputBox"
-              type="password" name="password"
+              type="password" 
+              formControlName="password"
               pInputText
               [(ngModel)]="password"
               placeholder="Password"
@@ -49,6 +62,8 @@
            <div class="loginBtn">
             <p-button (click)="submit(myform.value)">Submit</p-button>
           </div>
+        </div>
+        </div>
         </form>
 
          <div class="bot">

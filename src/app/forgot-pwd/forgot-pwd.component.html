@@ -11,16 +11,21 @@
         </div>
 
         <div class="formlogin">
-        <form class="login" #myform="ngForm">
+        <form class="login" [formGroup]=myform>
           <div class="formgroup">
             <label class="labelName" for="">Enter Your Mail</label>
             <input class="inputBox"
               type="text"
               pInputText
               ngModel
-              name="email"
+              formControlName="email"
               placeholder="Email"
             />
+
+            <div *ngIf="myform.controls['email'].invalid && myform.controls['email'].touched || myform.controls['email'].dirty">
+              <div *ngIf="myform.controls['email'].errors?.['required']" class="errMsg">Email is required.</div>
+              <div *ngIf="myform.controls['email'].errors?.['email']" class="errMsg">Invalid email format.</div>
+            </div>
           </div>
 
 

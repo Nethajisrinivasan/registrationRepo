@@ -13,16 +13,21 @@
         </div>
 
         <div class="formlogin">
-        <form class="login" #myform="ngForm">
+        <form class="login" [formGroup]="myform">
           <div class="formgroup">
             <label class="labelName" for="">Email</label>
             <input class="inputBox"
-              name="email"
+              formControlName="email"
               type="text"
               pInputText
-              [(ngModel)]="name"
+              ngModel
               placeholder="Email"
             />
+            <div class="error-indicator" *ngIf="myform.controls['email'].invalid && myform.controls['email'].touched || myform.controls['email'].dirty">
+              
+              <span *ngIf="myform.controls['email'].errors?.['required']" class="errMsg">Email is required.</span>
+              <span *ngIf="myform.controls['email'].errors?.['email']" class="errMsg">Invalid email format.</span>
+            </div>
           </div>
 
          <div class="formgroup">
@@ -30,15 +35,16 @@
             <input
             class="inputBox"
               type="password"
-              name="password"
+              formControlName ="password"
               pInputText
-              [(ngModel)]="password"
+              ngModel
               placeholder="Password"
             />
+
           </div>
 
            <div class="loginBtn">
-            <p-button (click)="login(myform.value)" >Login</p-button>
+            <p-button (click)="login()" >Login</p-button>
           </div>
         </form>
 

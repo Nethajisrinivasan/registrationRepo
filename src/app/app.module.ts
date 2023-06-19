@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
 import { VerificationComponent } from './verification/verification.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
@@ -34,6 +34,7 @@ import { ResetpwdverificationComponent } from './resetpwdverification/resetpwdve
     BrowserModule,
     AppRoutingModule,
     InputTextModule,
+    ReactiveFormsModule,  
     ButtonModule,
     FormsModule,HttpClientModule,MessagesModule,MessageModule
   ],
